@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Nuist Library</string>
+    <string name="setting">设置</string>
+    <string name="title_homepage">主页</string>
+    <string name="title_bulletin">公告</string>
+    <string name="title_my">我的</string>
+    <string name="destine">预约</string>
+    <string name="scancode">扫码</string>
+</resources>
