@@ -9,8 +9,27 @@
 
     <com.nuist.library.destine.DeskLayout
         android:id="@+id/desklayout"
+        android:layout_above="@+id/desklayout_tips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/desklayout_tips"
+        android:layout_above="@+id/rooms_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="灰色表示桌子, 红色表示书架"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="黄色表示过道, 蓝色表示大门"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/rooms_layout"
         android:layout_width="wrap_content"

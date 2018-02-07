@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class DeskLayout extends View {
     private final int MAX_W = 10;
-    private final int MAX_H = 16;
+    private final int MAX_H = 12;
 
     private final int FONT_SIZE = 16;
 
@@ -43,8 +43,7 @@ public class DeskLayout extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.WHITE);
-        final float fontScale = mContext.getResources().getDisplayMetrics().scaledDensity;
-        mPaint.setTextSize((int) (FONT_SIZE * fontScale + 0.5f));
+        mPaint.setTextSize(DensityUtil.sp2px(mContext, FONT_SIZE));
     }
 
     @Override
