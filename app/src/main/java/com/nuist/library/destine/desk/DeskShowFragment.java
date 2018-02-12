@@ -49,4 +49,10 @@ public class DeskShowFragment extends BaseFragment {
     public void setIDestineInterface(IDestineInterface IGraduationInterface) {
         mIDestineInterface = IGraduationInterface;
     }
+
+    public void updateSelectedRoomName() {
+        if (mDeskLayout != null) {
+            mDeskLayout.setSelectedRoomName(mIDestineInterface.getSelectedRoomName());
+        }
+    }
 }

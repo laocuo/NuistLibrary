@@ -24,9 +24,19 @@ public class DeskLayout extends View {
     private final int FONT_SIZE = 16;
 
     private Context mContext;
+
+    /*
+    * GRID width, height
+    * */
     private int w,h;
+
+    /*
+    * Current room name which selected
+    * */
     private String mSelectedRoomName;
+
     private Paint mPaint;
+    private int mHeightMax;
     private ArrayList<ObjectType> mList = null;
 
     public DeskLayout(Context context) {
@@ -51,20 +61,19 @@ public class DeskLayout extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int w_mode = MeasureSpec.getMode(widthMeasureSpec);
         int w_size = MeasureSpec.getSize(widthMeasureSpec);
-        int h_mode = MeasureSpec.getMode(heightMeasureSpec);
-        int h_size = MeasureSpec.getSize(heightMeasureSpec);
         if (w_mode == MeasureSpec.EXACTLY) {
             w = w_size;
         } else {
             w = DensityUtil.getScreenSize(mContext).x;
         }
-        if (h_mode == MeasureSpec.EXACTLY) {
-            h = h_size;
-        } else {
-            h = w;
-        }
+        h = w;
         w = w / MAX_W;
         h = h / MAX_H;
+        if (mHeightMax > 0) {
+            setMeasuredDimension(w * MAX_W, h * mHeightMax);
+        } else {
+            setMeasuredDimension(w * MAX_W, h * MAX_H);
+        }
     }
 
     @Override
@@ -144,19 +153,23 @@ public class DeskLayout extends View {
 
         String text = o.descripe;
         if (text != null) {
-            mPaint.setColor(Color.WHITE);
+            mPaint.setColor(Color.GRAY);
             Rect bounds = new Rect();
             mPaint.getTextBounds(text, 0, text.length(), bounds);
             canvas.drawText(text,
                     (e.x - s.x - bounds.width()) / 2 + s.x,
-                    e.y - (h - bounds.height())/2,
+                    e.y - (e.y - s.y - bounds.height())/2,
                     mPaint);
         }
     }
 
     public void setSelectedRoomName(String selectedRoomName) {
-        mSelectedRoomName = selectedRoomName;
-        mList = DestineUtils.getLayout(selectedRoomName);
-        postInvalidate();
+        if (mSelectedRoomName == null || !mSelectedRoomName.equalsIgnoreCase(selectedRoomName)) {
+            mSelectedRoomName = selectedRoomName;
+            mList = DestineUtils.getLayout(selectedRoomName);
+            mHeightMax = DestineUtils.getHeightMaxGrids(selectedRoomName);
+            requestLayout();
+            postInvalidate();
+        }
     }
 }

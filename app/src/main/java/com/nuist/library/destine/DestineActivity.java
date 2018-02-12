@@ -70,6 +70,7 @@ public class DestineActivity extends BaseActivity<DestinePresenter>
 
     @Override
     public void showDesk() {
+        mDestShowFragment.updateSelectedRoomName();
         replaceFragment(R.id.container, mDestShowFragment);
     }
 

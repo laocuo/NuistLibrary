@@ -7,12 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nuist.library.destine.DeskLayout
-        android:id="@+id/desklayout"
-        android:layout_above="@+id/desklayout_tips"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/desklayout_tips">
+        <com.nuist.library.destine.DeskLayout
+            android:id="@+id/desklayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
     <LinearLayout
         android:id="@+id/desklayout_tips"
         android:layout_above="@+id/rooms_layout"
